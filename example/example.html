@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preact Performance Examples</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js" defer></script>
+  <style>
+    :root {
+      --text-color: #222;
+      --bg-color: #fff;
+      --border-color: #ccc;
+      --input-bg-color: #fff;
+      --disabled-bg-color: #f0f0f0;
+      --hover-bg-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    html[data-theme="dark"] {
+      --text-color: #e0e0e0;
+      --bg-color: #222;
+      --border-color: #666;
+      --input-bg-color: #444;
+      --disabled-bg-color: #333;
+      --hover-bg-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding: 20px;
+      transition: background-color 0.3s, color 0.3s;
+      min-width: 320px;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    #root {
+      width: 100%;
+    }
+    
+    label {
+      display: block;
+      margin: 5px 0;
+      font-weight: 700;
+      font-size: larger;
+    }
+
+    /* Style for example elements */
+    button,
+    p {
+      color: var(--text-color);
+    }
+
+    button {
+      background-color: var(--input-bg-color);
+      border-color: var(--border-color);
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: var(--hover-bg-color);
+    }
+
+    .demoContainer {
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .badge {
+      appearance: none;
+      border: none;
+      outline: none;
+      display: inline-block;
+      background-color: #222;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin: 4px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .badge:hover {
+      background-color: #222;
+      color: #fff;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "preact": "https://esm.sh/preact@10?dev",
+        "preact/hooks": "https://esm.sh/preact@10/hooks?dev",
+        "preact/jsx-runtime": "https://esm.sh/preact@10/jsx-runtime?dev",
+        "preact/compat": "https://esm.sh/preact@10/compat?dev",
+        "htm": "https://esm.sh/htm?dev"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h2>Komponent - A more performant way to write functional components / hooks</h2>
+  
+  <div id="root"></div>
+  
+  <script type="module">
+    import './example.js';
+
+    
+  </script>
+</body>
+
+</html>
