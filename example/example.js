@@ -38,7 +38,7 @@ function App() {
     <br/><br/>
 
     <label>Prevent unnecessary re-renders</label>
-    <label>(even for changes to function props)</label>
+    <label>(even handles callback / function props)</label>
     <div class="demoContainer">
       <${UnMemoizedButton} obj=${{ text: "Unmemoized Button" }} onClick=${onClickUnMemoized} />
       <${MemoizedButton} obj=${{ text: "Memoized Button" }} onClick=${onClickMemoized} />
@@ -80,11 +80,11 @@ function App() {
       new event listener and the latest onClick handler is always used!</p>
     <br/><br/>
 
-    <label>useDeepState(initialState)</label>
-    <pre><code class="language-jsx">${`import { useDeepState, useDeepEffect } from "komponent";
+    <label>useKState(initialState)</label>
+    <pre><code class="language-jsx">${`import { useKState, useKEffect } from "komponent";
 
 function Component(props) {
-  const [getValue, setValue, hasValueChanged] = useDeepState({
+  const [getValue, setValue, hasValueChanged] = useKState({
       prop1: ['a', 'b', 'c'],
       prop2: {a: 1, b: 2, c: 3},
   });
@@ -92,31 +92,33 @@ function Component(props) {
   
   // Create a useEffect that won't re-run on every change to \`value\`
   // but only when \`props.something\` changes.
-  useDeepEffect(() => {
-    // Yet there is no stale-closure problem, because the getter function returns the latest value
+  useKEffect(() => {
+    // Yet there is no stale-closure problem, because the getter function returns
+    // the latest value
     console.log("Runs only when \`props.something\` changes:", getValue());
   }, [getValue, props.something]);
 
   // To create a useEffect that runs on every change to \`value\`,
   // you can get the value out of the getter first by doing \`getValue()\`
-  useDeepEffect(() => {
+  useKEffect(() => {
     console.log("Runs on every value change or props.something changes:", getValue());
   }, [getValue(), props.something]);
 };`}
       </code></pre>
     <br/><br/>
 
-    <label>useDeepEffect(setup, dependencies)</label>
+    <label>useKEffect(setup, dependencies?)</label>
     <p>
-      useDeepEffect does a deep equality check dependencies before running the effect.
+      useKEffect does a deep equality check dependencies before running the effect.
       <br/><br/>
-      The interface is the same as useEffect except that \`dependencies\` array is mandatory.
+      The interface is the same as useEffect except that when \`dependencies\` array is not provided,
+      the effect will run only once on component mount.
     </p>
     <br/><br/>
 
-    <label>useDeepMemo(calculateValue, dependencies?)</label>
+    <label>useKMemo(calculateValue, dependencies?)</label>
     <p>
-      useDeepMemo does a deep equality check dependencies and the returned value before returning the memoized value.
+      useKMemo does a deep equality check dependencies and the returned value before returning the memoized value.
       <br/><br/>
       The interface is the same as useMemo when you pass dependencies. When no dependencies is passed it only
       compares (with deep equality) the new value with the previous value returned by the calculatedValue function.
